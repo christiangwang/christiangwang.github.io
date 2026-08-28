@@ -1,11 +1,10 @@
 :root {
-  --bg: #002147;
-  --fg: #f4f6fa;
-  --muted: #a9b7d0;
-  --border: rgba(244, 246, 250, 0.14);
-  --accent: #f4f6fa;
+  --bg: #ffffff;
+  --fg: #1e1e1e;
+  --muted: #6b6b6b;
+  --border: #e2e2e2;
 
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-serif: "Newsreader", Georgia, serif;
 }
 
@@ -19,25 +18,17 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
-/* Top nav / tabs */
-
-.topnav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 1.5rem;
-  max-width: 640px;
-  margin: 0 auto;
-  background: linear-gradient(to bottom, var(--bg) 70%, transparent);
-}
+/* Mark */
 
 .mark {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 500;
@@ -46,9 +37,37 @@ body {
   text-decoration: none;
 }
 
-.tabs {
-  display: flex;
-  gap: 1.75rem;
+/* Layout */
+
+main {
+  max-width: 640px;
+  padding: 7rem clamp(1.25rem, 6vw, 4.75rem) 4rem;
+}
+
+h1.name {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.375rem;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  margin: 0 0 7rem;
+  color: var(--fg);
+}
+
+h1.name .dot {
+  color: var(--muted);
+}
+
+/* Nav list */
+
+.nav-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0 0 3.5rem;
+}
+
+.nav-list li {
+  margin-bottom: 0.85rem;
 }
 
 .tab {
@@ -56,94 +75,49 @@ body {
   border: none;
   padding: 0;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
   cursor: pointer;
-  position: relative;
-  padding-bottom: 0.3rem;
 }
 
 .tab:hover {
-  color: var(--fg);
+  text-decoration-color: var(--fg);
 }
 
 .tab[aria-selected="true"] {
-  color: var(--fg);
-}
-
-.tab[aria-selected="true"]::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: var(--accent);
-}
-
-/* Layout */
-
-main {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
-}
-
-.panel header {
-  margin-bottom: 3rem;
-}
-
-h1 {
-  font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 2rem;
-  margin: 0 0 0.5rem;
+  text-decoration-color: var(--fg);
 }
+
+/* Panels */
 
 .avatar {
   display: block;
-  width: 96px;
-  height: 96px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;
-  border: 1px solid var(--border);
-}
-
-h1.name {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 2.75rem;
-  letter-spacing: -0.02em;
-  text-transform: lowercase;
-}
-
-h1.name .dot {
-  color: var(--muted);
 }
 
 .tagline {
   color: var(--muted);
+  margin: 0 0 2.5rem;
+  font-weight: 300;
+}
+
+.links {
+  list-style: disc;
+  padding-left: 1.25rem;
   margin: 0;
 }
 
-section {
-  margin-bottom: 2.5rem;
-}
-
-h2 {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin: 0 0 1rem;
-}
-
-p {
-  margin: 0 0 1rem;
+.links li {
+  margin-bottom: 0.6rem;
 }
 
 a {
@@ -157,18 +131,10 @@ a:hover {
   text-decoration-color: var(--fg);
 }
 
-.links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1.5rem;
-}
-
 footer {
-  margin-top: 4rem;
+  margin-top: 5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
   color: var(--muted);
-  font-size: 0.875rem;
+  font-size: 0.8rem;
 }
