@@ -4,27 +4,63 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Christian Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Christian Wang</h1>
-      <p class="tagline">Philosophy, Politics and Economics student at Oxford.</p>
-    </header>
+  <nav class="topnav">
+    <a href="#about" class="mark">cw</a>
+    <div class="tabs" role="tablist">
+      <button class="tab" data-tab="about" role="tab" aria-selected="true">About</button>
+      <button class="tab" data-tab="projects" role="tab" aria-selected="false">Projects</button>
+    </div>
+  </nav>
 
-    <section>
-      <h2>Links</h2>
-      <ul class="links">
-        <li><a href="https://github.com/christiangwang">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/christiangwang/">LinkedIn</a></li>
-        <li><a href="https://www.instagram.com/christiangwang">Instagram</a></li>
-      </ul>
+  <main>
+    <section id="about" class="panel" data-panel="about">
+      <header>
+        <h1>Christian Wang</h1>
+        <p class="tagline">Philosophy, Politics and Economics student at Oxford.</p>
+      </header>
+
+      <section>
+        <h2>Links</h2>
+        <ul class="links">
+          <li><a href="https://github.com/christiangwang">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/christiangwang/">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/christiangwang">Instagram</a></li>
+        </ul>
+      </section>
+    </section>
+
+    <section id="projects" class="panel" data-panel="projects" hidden>
+      <header>
+        <h1>Projects</h1>
+        <p class="tagline">Nothing posted here yet — check back soon.</p>
+      </header>
     </section>
 
     <footer>
       <p>&copy; 2026 Christian Wang</p>
     </footer>
   </main>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+
+    function activate(name, updateHash) {
+      tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === name)));
+      panels.forEach(p => p.hidden = p.dataset.panel !== name);
+      if (updateHash) history.replaceState(null, '', '#' + name);
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab, true)));
+
+    const initial = location.hash.replace('#', '');
+    activate(initial === 'projects' ? 'projects' : 'about', false);
+  </script>
 </body>
 </html>
