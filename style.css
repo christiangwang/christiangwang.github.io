@@ -91,6 +91,14 @@ h1.name {
 
 /* Panels */
 
+.about-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 2.5rem;
+}
+
 .panel p {
   margin: 0 0 1.5rem;
 }
