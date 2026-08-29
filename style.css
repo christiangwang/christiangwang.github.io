@@ -91,6 +91,14 @@ h1.name {
 
 /* Panels */
 
+.panel p {
+  margin: 0 0 1.5rem;
+}
+
+.panel p:last-child {
+  margin-bottom: 0;
+}
+
 .tagline {
   color: var(--muted);
   margin: 0 0 2.5rem;
