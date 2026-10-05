@@ -60,6 +60,67 @@
 
         <iframe class="pdf-embed" src="turl-magazine.pdf" title="The Turl Magazine" loading="lazy"></iframe>
       </div>
+
+      <h2 id="marketing" class="section-heading">Creative, Marketing &amp; PR</h2>
+
+      <div class="project">
+        <h2 class="project-title">Lincoln College Ball 2026 — Heaven or Las Vegas</h2>
+        <p>As Head of Marketing on the Lincoln College Ball Committee, I rebuilt the Ball's marketing on my own after the three-person marketing team resigned. I ran meetings with the committee to coordinate the marketing strategy and creative direction, then ran the campaign from theme reveal to final ticket push. Over that time I doubled ticket sales and turned the Ball from a loss into a profit.</p>
+
+        <p>I designed the campaign around the "Heaven or Las Vegas" theme as a series of panoramic Instagram carousels. Each one splits into three slides that join up seamlessly on the grid. The posts revealed the headliner (Charlie Burg), the tribute acts, the casino and fairground entertainment, the dress code and the food and drink.</p>
+
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXmXdHHiNHh/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/p/DXmXdHHiNHh/" target="_blank" rel="noopener">View the campaign slideshow on Instagram</a>
+        </blockquote>
+        <script async src="https://www.instagram.com/embed.js"></script>
+
+        <p>Off the grid, I coordinated a painted mural for the Ball across a shopfront window on Turl Street, created by artist <a href="https://www.instagram.com/kcroxson/" target="_blank" rel="noopener">@kcroxson</a>. It gave the Ball a public presence on Turl Street in the run-up to the night.</p>
+
+        <img class="media" src="marketing/ball-mural.jpg" alt="Painted Lincoln Ball 2026 Heaven or Las Vegas mural on a shop window on Turl Street" loading="lazy" width="1600" height="1517">
+        <p class="caption">The Turl Street mural, artwork by @kcroxson.</p>
+
+        <p><a href="https://www.instagram.com/lincolncollegeball2026/" target="_blank" rel="noopener">See the full campaign on @lincolncollegeball2026</a></p>
+      </div>
+
+      <div class="project">
+        <h2 class="project-title">Lincoln College JCR — Access &amp; Outreach</h2>
+        <p>I'm one of two Access and Outreach Officers on Lincoln's JCR. I run the JCR's Instagram and support the college's access and outreach events. I helped produce the JCR's 2026 Alternative Prospectus, which is a student-written guide to life at Lincoln covering accommodation, food, welfare, societies and financial support.</p>
+
+        <iframe class="pdf-embed" src="marketing/alternative-prospectus-2026.pdf" title="Lincoln College Alternative Prospectus 2026" loading="lazy"></iframe>
+
+        <p>As the JCR's International Students' Representative, I also wrote and designed a 19-page guide for incoming international students, covering arrival, visas, banking, phones, packing and settling in. <a href="marketing/international-freshers-guide.pdf" target="_blank" rel="noopener">Read the International Freshers' Guide 2026–27</a></p>
+      </div>
+
+      <div class="project">
+        <h2 class="project-title">Fiveable — Visual Content &amp; Live Events</h2>
+        <p>As Visual Content Manager, I created and maintained visual content for 40+ AP, SAT and ACT study guides, designing original diagrams, charts and infographics in Figma, Photoshop and Canva within Fiveable's brand guidelines. Before that, as Live Events Designer, I designed slide decks for the AP Human Geography Cram Finales, live virtual review events with 14,000+ total attendees.</p>
+
+        <div class="gallery gallery-fit" tabindex="0" aria-label="Fiveable study guide graphics">
+          <img src="marketing/fiveable-dtm.jpg" alt="Demographic Transition Model diagram" loading="lazy" width="1600" height="800">
+          <img src="marketing/fiveable-neuron.jpg" alt="Labelled neuron diagram" loading="lazy" width="1600" height="1120">
+          <img src="marketing/fiveable-sleep.jpg" alt="Sleep stages with EEG brain wave patterns" loading="lazy" width="1600" height="822">
+          <img src="marketing/fiveable-triarchic.png" alt="Sternberg's triarchic theory of intelligence diagram" loading="lazy" width="1145" height="1001">
+          <img src="marketing/fiveable-spearman.png" alt="Spearman's general intelligence (g) diagram" loading="lazy" width="881" height="772">
+          <img src="marketing/fiveable-pyramids.jpg" alt="Afghanistan vs USA population pyramids" loading="lazy" width="1600" height="800">
+          <img src="marketing/fiveable-piaget.jpg" alt="Piaget's cognitive stages of development" loading="lazy" width="1600" height="827">
+          <img src="marketing/fiveable-big5.jpg" alt="Big 5 personality traits infographic" loading="lazy" width="1600" height="870">
+        </div>
+        <p class="caption">Scroll sideways for more graphics.</p>
+      </div>
+
+      <div class="project">
+        <h2 class="project-title">B.R.A.I.N.S — Civics Unplugged Solvathon</h2>
+        <p>I co-developed B.R.A.I.N.S (Budget for Responsible AI Integration in National Schools), a national framework for the ethical use of AI in schools, with three teammates, and designed its 23-slide pitch deck. It placed first of ~200 teams at the Civics Unplugged Fall 2024 Solvathon, and we presented it to the U.S. Department of Education's Office of Educational Technology.</p>
+
+        <iframe class="pdf-embed" src="marketing/brains-deck.pdf" title="B.R.A.I.N.S pitch deck" loading="lazy"></iframe>
+      </div>
+
+      <div class="project">
+        <h2 class="project-title">Other Content &amp; Campaign Work</h2>
+        <p><strong>Evan Low for Congress</strong>: I worked with the campaign's social media team to build online support, helped run in-office events, and reached ~500 voters through canvassing and phone-banking.</p>
+
+        <p><strong>Notion</strong>: As Campus Leader at Oxford, I promote Notion to students and help build a startup culture on campus through events and partnerships.</p>
+      </div>
     </section>
 
     <footer>
@@ -91,7 +152,12 @@
     tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab, true)));
 
     const initial = location.hash.replace('#', '');
-    activate(initial === 'projects' ? 'projects' : 'about', false);
+    if (initial === 'marketing') {
+      activate('projects', false);
+      document.getElementById('marketing').scrollIntoView();
+    } else {
+      activate(initial === 'projects' ? 'projects' : 'about', false);
+    }
   </script>
 </body>
 </html>
