@@ -173,6 +173,10 @@ h1.name {
   margin: 0.5rem 0 0;
 }
 
+.pdf-embed + p {
+  margin-top: 1.5rem;
+}
+
 .tagline {
   color: var(--muted);
   margin: 0 0 2.5rem;
