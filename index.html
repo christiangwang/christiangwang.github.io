@@ -56,9 +56,11 @@
         <h2 class="project-title">The Turl Magazine</h2>
         <p>Led a team of 25, managed submissions, coordinated printing with local press and funding with Jesus College, and spearheaded 2-day InDesign lay-in through my position as Editor in Chief of the Trinity Term 2026 edition of the Turl Magazine.</p>
 
-        <p><a href="https://www.instagram.com/p/DYZa49QCEh9/?utm_source=ig_web_copy_link&amp;igsi=MzRlODBiNWFlZA==" target="_blank" rel="noopener">See event photos</a></p>
-
         <iframe class="pdf-embed" src="turl-magazine.pdf" title="The Turl Magazine" loading="lazy"></iframe>
+
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYZa49QCEh9/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/p/DYZa49QCEh9/" target="_blank" rel="noopener">See event photos on Instagram</a>
+        </blockquote>
       </div>
 
       <h2 id="marketing" class="section-heading">Creative, Marketing &amp; PR</h2>
@@ -72,7 +74,6 @@
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXmXdHHiNHh/" data-instgrm-version="14">
           <a href="https://www.instagram.com/p/DXmXdHHiNHh/" target="_blank" rel="noopener">View the campaign slideshow on Instagram</a>
         </blockquote>
-        <script async src="https://www.instagram.com/embed.js"></script>
 
         <p>Off the grid, I coordinated a painted mural for the Ball across a shopfront window on Turl Street, created by artist <a href="https://www.instagram.com/kcroxson/" target="_blank" rel="noopener">@kcroxson</a>. It gave the Ball a public presence on Turl Street in the run-up to the night.</p>
 
@@ -139,6 +140,7 @@
     </footer>
   </main>
 
+  <script async src="https://www.instagram.com/embed.js"></script>
   <script>
     const tabs = document.querySelectorAll('.tab');
     const panels = document.querySelectorAll('.panel');
@@ -147,6 +149,7 @@
       tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === name)));
       panels.forEach(p => p.hidden = p.dataset.panel !== name);
       if (updateHash) history.replaceState(null, '', '#' + name);
+      if (name === 'projects' && window.instgrm) window.instgrm.Embeds.process();
     }
 
     tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab, true)));
