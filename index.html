@@ -154,6 +154,85 @@
 
     tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab, true)));
 
+    // Mobile browsers can't scroll PDFs inside iframes, so render them with PDF.js on touch devices.
+    const pdfFrames = document.querySelectorAll('iframe.pdf-embed');
+    if (pdfFrames.length && matchMedia('(pointer: coarse)').matches) {
+      const pdfjsBase = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+      const loader = document.createElement('script');
+      loader.src = pdfjsBase + 'pdf.min.js';
+      loader.onload = () => {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsBase + 'pdf.worker.min.js';
+        pdfFrames.forEach(renderPdf);
+      };
+      document.head.appendChild(loader);
+    }
+
+    function renderPdf(frame) {
+      const src = frame.getAttribute('src');
+      const box = document.createElement('div');
+      box.className = 'pdf-embed pdf-pages';
+      box.setAttribute('role', 'region');
+      box.setAttribute('aria-label', frame.title);
+      box.tabIndex = 0;
+      frame.replaceWith(box);
+
+      const link = document.createElement('p');
+      link.className = 'caption';
+      link.innerHTML = '<a href="' + src + '" target="_blank" rel="noopener">Open full PDF</a>';
+      box.after(link);
+
+      pdfjsLib.getDocument(src).promise.then(pdf => pdf.getPage(1).then(first => {
+        const base = first.getViewport({ scale: 1 });
+        // Draw pages as they near the viewport and clear distant ones to keep memory low on phones.
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) drawPage(pdf, entry.target);
+            else clearPage(entry.target);
+          });
+        }, { root: box, rootMargin: '1200px 0px' });
+
+        for (let n = 1; n <= pdf.numPages; n++) {
+          const slot = document.createElement('div');
+          slot.className = 'pdf-page';
+          slot.dataset.page = n;
+          slot.style.aspectRatio = base.width + ' / ' + base.height;
+          box.appendChild(slot);
+          observer.observe(slot);
+        }
+      })).catch(() => {
+        box.textContent = 'This PDF could not be displayed here.';
+      });
+    }
+
+    function drawPage(pdf, slot) {
+      if (slot.task || slot.querySelector('canvas')) return;
+      slot.task = true;
+      pdf.getPage(Number(slot.dataset.page)).then(page => {
+        if (!slot.task) return;
+        const unscaled = page.getViewport({ scale: 1 });
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        const viewport = page.getViewport({ scale: (slot.clientWidth / unscaled.width) * ratio });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        slot.style.aspectRatio = unscaled.width + ' / ' + unscaled.height;
+        slot.appendChild(canvas);
+        slot.task = page.render({ canvasContext: canvas.getContext('2d'), viewport });
+        slot.task.promise.catch(() => {});
+      });
+    }
+
+    function clearPage(slot) {
+      if (slot.task && slot.task.cancel) slot.task.cancel();
+      slot.task = null;
+      const canvas = slot.querySelector('canvas');
+      if (canvas) {
+        canvas.width = 0;
+        canvas.height = 0;
+        canvas.remove();
+      }
+    }
+
     const initial = location.hash.replace('#', '');
     if (initial === 'marketing') {
       activate('projects', false);

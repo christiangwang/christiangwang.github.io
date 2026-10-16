@@ -224,3 +224,31 @@ footer {
   object-fit: contain;
   background: #ffffff;
 }
+
+.pdf-pages {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background: var(--border);
+  padding: 0.5rem;
+}
+
+.pdf-page {
+  width: 100%;
+  background: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-page:last-child {
+  margin-bottom: 0;
+}
+
+.pdf-page canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pdf-pages + p.caption {
+  margin-top: 0.5rem;
+}
