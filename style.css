@@ -252,3 +252,23 @@ footer {
 .pdf-pages + p.caption {
   margin-top: 0.5rem;
 }
+
+.ig-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.ig-pair .instagram-media {
+  min-width: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 600px) {
+  .ig-pair {
+    grid-template-columns: 1fr;
+  }
+}
